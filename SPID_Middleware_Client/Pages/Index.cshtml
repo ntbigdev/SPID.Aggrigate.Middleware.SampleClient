@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form method="post" action="https://192.168.1.103:5001/home/login?idpname=BigdevSPTest&callbackURL=https%3A%2F%2Flocalhost%3A7150%2Fauthstatus">
+        <input type="submit" />
+    </form>
+
+
+
+
+</div>
+
+    <div>@ViewData["Resp"]</div>
