@@ -1,4 +1,17 @@
+using Microsoft.AspNetCore.HttpLogging;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddCors(opts => {
+    opts.AddDefaultPolicy(o => { o.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
+});
+
+builder.Services.AddHttpLogging(httpLogging => {
+    httpLogging.LoggingFields = HttpLoggingFields.Request;
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -13,10 +26,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseHttpLogging();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseCors();
 
 app.UseAuthorization();
 

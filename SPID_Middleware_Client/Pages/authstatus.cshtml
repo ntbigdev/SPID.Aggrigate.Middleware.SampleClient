@@ -1,5 +1,8 @@
 ﻿@page
 @model SPID_Middleware_Client.Pages.authstatusModel
 @{
+    //<div>@ViewData["Resp"]</div>
+    //<h3>@Model.msgToDisp</h3>
+    <div>Status: <span>@Model.ReqStatus</span></div>
+    <div>JSON Response Data: <span>@Model.ResJSON</span></div>
 }
-<div>@ViewData["Resp"]</div>
