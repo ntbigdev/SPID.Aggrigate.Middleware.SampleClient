@@ -10,37 +10,43 @@ namespace SPID_Middleware_Client.Pages
     [IgnoreAntiforgeryToken]
     public class authstatusModel : PageModel
     {
+
+        public string requestId { get; set; } = "";
+
         public string msgToDisp { get; set; } = "";
 
         public bool ReqStatus { get; set; } = false;
-
-        public string ResJSON { get; set; } = "";
+        public string ErrorCode { get; set; } = "";
+        public string StatusMessage { get; set; } = "";
+        public string ClaimsJSON { get; set; } = "";
         public string SAMLResp { get; set; } = "";
 
         public IActionResult OnPost()
         {
             msgToDisp = "POST Used";
-
-
-
             var req = Request;
-
-
-
-            if(Request.Form != null)
+            if(req.Form != null)
             {
-                if (req.Form.ContainsKey("Status"))
+                if (req.Form.ContainsKey("id"))
                 {
-                    ReqStatus = bool.Parse(req.Form["Status"].ToString());
+                    requestId = req.Form["id"].ToString();
                 }
-                if (ReqStatus)
+                if (req.Form.ContainsKey("status"))
                 {
-                    if (req.Form.ContainsKey("data"))
-                    {
-                        ResJSON = req.Form["data"].ToString();
-                    }
+                    ReqStatus = bool.Parse(req.Form["status"].ToString());
                 }
-
+                if (req.Form.ContainsKey("claimsJSON"))
+                {
+                    ClaimsJSON = req.Form["claimsJSON"].ToString();
+                }
+                if (req.Form.ContainsKey("errorCode"))
+                {
+                    ErrorCode = req.Form["errorCode"].ToString();
+                }
+                if (req.Form.ContainsKey("statusMsg"))
+                {
+                    StatusMessage = req.Form["statusMsg"].ToString();
+                }
                 if (req.Form.ContainsKey("samlresp"))
                 {
                     SAMLResp = req.Form["samlresp"].ToString();

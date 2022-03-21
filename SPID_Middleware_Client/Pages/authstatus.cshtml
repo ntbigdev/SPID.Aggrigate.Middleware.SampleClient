@@ -1,13 +1,35 @@
 ﻿@page
 @model SPID_Middleware_Client.Pages.authstatusModel
 @{
-    //<div>@ViewData["Resp"]</div>
-    //<h3>@Model.msgToDisp</h3>
-    <div>Status: <span>@Model.ReqStatus</span></div>
-    <div>JSON Response Data: <pre>@Model.ResJSON</pre>
+    <div>
+        <h1>SPID Authentication Response</h1>
+        <hr />
+        <table style="border:solid;width:50%;">
+            <tbody>
+                <tr>
+                    <td style="border:solid;width:20%;">Status</td>
+                    <td style="border:solid;">@Model.ReqStatus</td>
+                </tr>
+                <tr>
+                    <td style="border:solid;width:20%;">ErrorCode</td>
+                    <td style="border:solid;"><span style="color:red;">@Model.ErrorCode</span></td>
+                </tr>
+                <tr>
+                    <td style="border:solid;width:20%;">Status Message</td>
+                    <td style="border:solid;"><span style="color:red;">@Model.StatusMessage</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div>
+            <div><b>Claims JSON</b></div>
+            <div style="width:95%;overflow-x:auto;"></div>
+            <div id="json">@Model.ClaimsJSON</div>
+        </div>
+        <hr />
+        <div>
+            <div><b>SAML Response</b></div>
+            <div><pre>@Model.SAMLResp</pre></div>
+        </div>
     </div>
-    <p></p>
-    <p></p>
-    <p></p>
-    <div>SAML Response: <pre>@Model.SAMLResp</pre></div>
 }
