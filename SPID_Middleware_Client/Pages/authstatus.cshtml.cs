@@ -15,6 +15,7 @@ namespace SPID_Middleware_Client.Pages
         public bool ReqStatus { get; set; } = false;
 
         public string ResJSON { get; set; } = "";
+        public string SAMLResp { get; set; } = "";
 
         public IActionResult OnPost()
         {
@@ -38,6 +39,11 @@ namespace SPID_Middleware_Client.Pages
                     {
                         ResJSON = req.Form["data"].ToString();
                     }
+                }
+
+                if (req.Form.ContainsKey("samlresp"))
+                {
+                    SAMLResp = req.Form["samlresp"].ToString();
                 }
             }
 
